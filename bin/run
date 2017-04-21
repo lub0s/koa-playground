@@ -1,0 +1,4 @@
+#!/bin/sh
+
+make compile \
+  && node "$@" dist/src/app | node_modules/.bin/bunyan

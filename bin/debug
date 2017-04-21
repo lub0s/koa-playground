@@ -1,0 +1,4 @@
+#!/bin/sh
+
+make compile \
+  && node "$@" --inspect dist/src/server | node_modules/.bin/bunyan

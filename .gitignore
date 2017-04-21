@@ -1,0 +1,16 @@
+# IDE files
+.idea
+.vscode
+
+# packages
+./node_modules
+
+# generated files
+./coverage
+./dist
+
+# database files (docker mapped folder)
+./database/data
+
+#.nyc
+./.nyc_output

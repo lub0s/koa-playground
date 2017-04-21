@@ -1,0 +1,58 @@
+{
+  "name": "koa-simple",
+  "version": "1.0.0",
+  "description": "Sample project with koa",
+  "main": "dist/src/app.js",
+  "scripts": {
+    "start": "node .",
+    "compile": "./bin/compile",
+    "test": "./bin/test"
+  },
+  "keywords": [
+    "koa2"
+  ],
+  "author": "Unknown",
+  "license": "ISC",
+  "engines": {
+    "node": "~7.9.0",
+    "npm": "^4.1.2"
+  },
+  "dependencies": {
+    "bcrypt": "^1.0.2",
+    "bluebird": "^3.5.0",
+    "bunyan": "^1.8.10",
+    "joi": "^10.4.1",
+    "jsonwebtoken": "^7.3.0",
+    "kcors": "^2.2.1",
+    "koa": "^2.2.0",
+    "koa-body": "^2.0.0",
+    "koa-compose": "^3.1.0",
+    "koa-compress": "^2.0.0",
+    "koa-router": "^7.1.1",
+    "koa-static2": "^0.1.8",
+    "lodash": "^4.17.4",
+    "pg": "^6.1.5",
+    "sequelize": "^3.30.4",
+    "swagger-ui": "^2.2.10",
+    "uuid": "^3.0.1",
+    "ramda-fantasy": "latest",
+    "ramda": "latest",
+    "monk": "latest"
+  },
+  "devDependencies": {
+    "@strv/eslint-config-javascript": "^6.5.0",
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "chance": "^1.0.6",
+    "dotenv": "^4.0.0",
+    "eslint": "^3.19.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.2.0",
+    "mocha-http-detect": "^0.2.0",
+    "nodemon": "^1.11.0",
+    "nyc": "^10.2.0",
+    "sequelize-cli": "^2.7.0",
+    "snyk": "^1.28.0",
+    "supertest-koa-agent": "^0.3.0"
+  }
+}
