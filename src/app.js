@@ -8,14 +8,14 @@ import db from './database'
 const log = require('./common/logger')
 const config = require('./config')
 const cluster = require('cluster')
-const timeout = require('koa-timeout-v2')
+const timeout = require('koa-timeout')(15000)
 
 const app = new Koa()
 
 app.use(koaCompress())
 app.use(koaBody({ multipart: true }))
 app.use(koaCors({ origin: '*' }))
-app.use(timeout(10000, { status: 408, message: 'Service timeout' }))
+app.use(timeout)
 
 app.use(routes)
 

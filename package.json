@@ -38,7 +38,7 @@
     "ramda-fantasy": "latest",
     "ramda": "latest",
     "monk": "latest",
-    "koa-timeout-v2": "latest"
+    "koa-timeout": "latest"
   },
   "devDependencies": {
     "@strv/eslint-config-javascript": "^6.5.0",
