@@ -9,7 +9,7 @@ import { Either } from 'ramda-fantasy'
 const foldEither = Either.either
 
 const created = R.curry((koa, value) => {
-  koa.status = 200
+  koa.status = 201
   koa.body = value
 })
 

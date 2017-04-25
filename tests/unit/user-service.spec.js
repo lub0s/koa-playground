@@ -1,6 +1,7 @@
 const { expect } = require('../common/chai')
 const generate = require('../data/generate')
 const userService = require('../../src/services/user-services')
+const { resetDb } = require('../data/cleaner')
 // const errors = require('../../src/common/errors')
 // import { Either } from 'ramda-fantasy'
 //
@@ -9,7 +10,7 @@ const userService = require('../../src/services/user-services')
 
 describe('userService', () => {
 
-  // beforeEach(resetDb)
+  beforeEach(async () => { await resetDb() }) // ?
 
   it('should create a new user', async () => {
     const user = generate.user()
@@ -25,7 +26,14 @@ describe('userService', () => {
     // Create first one
     await userService.register(data)
 
-    // Create conflict
+    // Expect conflict in form of Left
     expect((await userService.register(data)).isLeft)
   })
+
+  it('should not allow with short password', async () => {
+    const data = generate.userShortPwd()
+
+    expect(await userService.register(data).isLeft)
+  })
+
 })

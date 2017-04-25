@@ -12,20 +12,19 @@ export default {
 
     const collection = db.get('users')
 
-    const hashed = await utils.crypto.hashPassword(user.password)
-
-    user.password = hashed
-
     const conflictUser = await collection.findOne({ email: user.email })
+
     if (conflictUser) {
       return new error({
         code: 409,
         message: 'User with this email already exists',
       })
     }
+
+    const hashed = await utils.crypto.hashPassword(user.password)
+    user.password = hashed
     const inserted = await collection.insert(user)
     return new value(inserted)
-
   },
 
   getUsers() {
