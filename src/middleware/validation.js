@@ -1,11 +1,7 @@
 import joi from 'joi'
 import Promise from 'bluebird'
-
-import { Either } from 'ramda-fantasy'
-
-
-const error = Either.Left
-const value = Either.Right
+const log = require('../common/logger')
+const errors = require('../common/errors')
 
 export default {
 
@@ -13,13 +9,10 @@ export default {
     return async (ctx, middleware) => {
 
       try {
-        const res = await Promise.fromCallback(done => joi.validate(ctx.request.body, schema, done))
-        ctx.request.validatedBody = new value(res)
+        ctx.request.validatedBody = await Promise.fromCallback(done => joi.validate(ctx.request.body, schema, done))
       } catch (err) {
-        ctx.request.validatedBody = new error({
-          code: 400,
-          message: err.cause.name,
-        })
+        log.warn(err, 'Request validation error.')
+        ctx.request.validatedBody = new errors.ValidationError()
       }
 
       await middleware()
