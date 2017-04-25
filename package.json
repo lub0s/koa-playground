@@ -37,7 +37,8 @@
     "uuid": "^3.0.1",
     "ramda-fantasy": "latest",
     "ramda": "latest",
-    "monk": "latest"
+    "monk": "latest",
+    "koa-timeout-v2": "latest"
   },
   "devDependencies": {
     "@strv/eslint-config-javascript": "^6.5.0",
