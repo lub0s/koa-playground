@@ -2,21 +2,26 @@ import compose from 'koa-compose'
 import middleware from '../middleware'
 import schema from '../validation/schema'
 import userService from '../services/user-services'
-import log from '../common/logger'
 import * as R from 'ramda'
 import { Either } from 'ramda-fantasy'
 
 const foldEither = Either.either
+const success = require('../common/successes')
 
-const created = R.curry((koa, value) => {
-  koa.status = 201
-  koa.body = value
+
+const successResponse = R.curry((koa, succ) => {
+  koa.status = succ.status
+  koa.body = succ.body
 })
 
 const errorResponse = R.curry((koa, error) => {
-  koa.status = error.code
+  koa.status = error.status
   koa.body = { error: error.message }
 })
+
+const fold = (koa, result) => {
+  foldEither(errorResponse(koa), successResponse(koa))(result)
+}
 
 export default {
 
@@ -26,22 +31,19 @@ export default {
 
       const body = ctx.request.validatedBody
 
-      const databaseResult = await body.chain(userService.register)
+      const databaseResult = await body.chain(inn => userService.register(inn.body))
 
-      foldEither(errorResponse(ctx), created(ctx))(databaseResult)
+      fold(ctx, databaseResult)
     },
   ]),
 
-  async getUsers(coa) {
-    log.info('Get users route hit.')
-    const users = await userService.getUsers()
-    log.info({ users }, 'Users returned.')
-    coa.status = 200
-    coa.body = { users }
+  async getUsers(koa) {
+    const result = await userService.getUsers()
+    successResponse(koa, new success.Ok({ users: result }))
   },
 
   async getUser(koa) {
     const findResult = await userService.getUser(koa.params.id)
-    foldEither(errorResponse(koa), created(koa))(findResult)
+    fold(koa, findResult)
   },
 }

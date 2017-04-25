@@ -4,6 +4,8 @@
    "text"
  ],
  "exclude": [
+   "**/*.spec.js",
+   "build",
    "test",
    "tests",
    "node_modules",

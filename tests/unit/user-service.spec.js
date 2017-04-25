@@ -2,15 +2,13 @@ const { expect } = require('../common/chai')
 const generate = require('../data/generate')
 const userService = require('../../src/services/user-services')
 const { resetDb } = require('../data/cleaner')
-// const errors = require('../../src/common/errors')
-// import { Either } from 'ramda-fantasy'
-//
-// const error = Either.Left
-// const value = Either.Right
+
 
 describe('userService', () => {
 
-  beforeEach(async () => { await resetDb() }) // ?
+  beforeEach(async () => {
+    await resetDb()
+  })
 
   it('should create a new user', async () => {
     const user = generate.user()

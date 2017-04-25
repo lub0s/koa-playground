@@ -7,7 +7,13 @@ const app = require('../../../src/app')
 
 describe('users', () => {
 
-  beforeEach(async () => { await resetDb() })
+  after(async () => {
+    await resetDb()
+  })
+
+  beforeEach(async () => {
+    await resetDb()
+  })
 
   it('should create a new user', async () => {
     const user = generate.user()
