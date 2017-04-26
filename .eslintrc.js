@@ -16,6 +16,7 @@ module.exports = {
   // configurations.
   rules: {
     'valid-jsdoc': 2,
+    'new-cap': 0,
     'newline-after-var': 0,
     'padded-blocks': 0,
     'id-length': [1, {

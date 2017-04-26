@@ -6,14 +6,15 @@ const router = new Router()
 // Status
 router.get('/', controllers.status.getStatus)
 
-// // Sessions
-// router.post('/sessions', controllers.session.create)
-//
-// // Users
+// Users
 router.post('/users', controllers.users.register)
 router.get('/users', controllers.users.getUsers)
 router.get('/users/:id', controllers.users.getUser)
-// router.post('/users/reset-password', controllers.user.resetPassword)
+
+// Notes
+router.post('/users/:id/notes', controllers.notes.createNote)
+router.get('/users/:id/notes', controllers.notes.getNotes)
+router.get('/users/:id/notes/:noteId', controllers.notes.getNote)
 
 const routes = router.routes()
 export default routes
